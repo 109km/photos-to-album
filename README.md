@@ -226,3 +226,5 @@ The employee count applies to the organization, not just the people using this s
 The featured 4K demo was made from travel photos approved for this project's public demo. The separate `npm run demo` sample uses synthetic landscapes. The code's MIT license does not establish reuse rights for photo-based media; use your own photos or obtain the appropriate permission.
 
 See [third-party and demo notices](THIRD_PARTY_NOTICES.md).
+
+[Report an issue](https://github.com/109km/photos-to-album/issues)

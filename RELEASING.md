@@ -6,9 +6,9 @@ This file is for maintainers; users should start with [README.md](README.md).
 
 - [x] Adopt MIT with copyright holder shaoxinheng; add LICENSE and synchronize package metadata and both READMEs.
 - [ ] Confirm rights to contributed code and approved demo media before publication. Dependency terms are summarized in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md); a source scan cannot prove ownership.
-- [ ] Set the real repository/support links after a repository exists. Do not publish example links that point to a nonexistent owner or repository.
+- [x] Set the real repository/support links after a repository exists. Do not publish example links that point to a nonexistent owner or repository.
 - [ ] Verify the distributable contains only skill code, documentation, synthetic assets and the approved public demo (`assets/demo-4k.mp4` and `assets/demo-poster.jpg`). Exclude original photos, production metadata and the separate web app.
-- [ ] Run setup, check and demo from a fresh copy of the distributable.
+- [x] Run setup, check and demo from a fresh copy of the distributable.
 - [ ] Keep platform claims accurate: macOS tested; Windows/Linux unverified until tested.
 
 ## Every release

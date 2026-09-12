@@ -257,3 +257,5 @@ MIT 许可证仅覆盖本项目的原创代码和文档，不覆盖 Remotion 或
 主推的 4K 演示使用了已获准用于本项目公开演示的旅行照片；单独运行 `npm run demo` 生成的示例使用程序绘制的山景。代码的 MIT 许可证不代表照片类媒体的复用授权；请使用自己的照片或取得相应许可。
 
 另请参阅[第三方依赖与演示素材说明（英文）](THIRD_PARTY_NOTICES.md)。
+
+[反馈问题](https://github.com/109km/photos-to-album/issues)
