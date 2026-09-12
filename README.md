@@ -35,12 +35,22 @@ Install from [109km/photos-to-album](https://github.com/109km/photos-to-album). 
 
 ```text
 Install the photos-to-album skill from https://github.com/109km/photos-to-album
-into my Codex skills directory. Run npm run setup and verify the result.
+into my Codex skills directory. Use the repository ZIP if Git is unavailable.
+Run npm run setup and verify the result.
 Do not overwrite an existing installation. Report local rendering readiness
 and whether AI styling and person preservation are available or still unverified.
 ```
 
-**Manual installation on macOS** requires Git and [Node.js 22 or newer](https://nodejs.org/en/download) with npm:
+**Manual installation on macOS** requires [Node.js 22 or newer](https://nodejs.org/en/download) with npm. **Git is optional**: it is used only for cloning and Git-based updates, not rendering.
+
+**Without Git — download the ZIP:**
+
+1. [Download the skill ZIP](https://github.com/109km/photos-to-album/archive/refs/heads/main.zip) and extract it.
+2. Rename the extracted `photos-to-album-main` folder to `photos-to-album`.
+3. Move it into `~/.codex/skills/` (create that folder if needed). If you configured `CODEX_HOME`, use its `skills/` folder instead. The result should be `~/.codex/skills/photos-to-album/SKILL.md`, without an extra nested folder. Keep an existing installation rather than overwriting it.
+4. Open a terminal in the installed `photos-to-album` folder and run `npm run setup`, or ask Codex to run setup there.
+
+**With Git — clone and set up:**
 
 ```sh
 album_skill_dir="${CODEX_HOME:-$HOME/.codex}/skills/photos-to-album"
@@ -58,7 +68,7 @@ This uses your configured `CODEX_HOME`, or `~/.codex` by default. Existing files
 
 **Using this at a company?** Remotion is free for individuals, nonprofits and for-profit organizations with up to 3 employees. Larger for-profit organizations need a paid Company License. See [licensing details](#license-and-release-status) before rendering.
 
-**Skip running setup again if installation already reported success.** The installation above already runs setup. If you only copied the skill folder, open a terminal there and run:
+**Skip running setup again if installation already reported success.** Both installation methods above include setup. If you only copied the skill folder, open a terminal there and run:
 
 ```sh
 npm run setup

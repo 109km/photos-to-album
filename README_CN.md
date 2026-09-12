@@ -35,11 +35,21 @@ https://github.com/user-attachments/assets/9d328705-48eb-41b8-80d5-7d35b3325622
 
 ```text
 请从 https://github.com/109km/photos-to-album 安装 photos-to-album
-到我的 Codex 技能目录。运行 npm run setup 并验证结果，不要覆盖已有安装。
+到我的 Codex 技能目录。如果没有 Git，请使用仓库 ZIP。
+运行 npm run setup 并验证结果，不要覆盖已有安装。
 分别说明本地渲染是否就绪，以及 AI 风格化和人物保留能力是否可用或尚未验证。
 ```
 
-**macOS 手动安装**需要 Git，以及包含 npm 的 [Node.js 22 或更新版本](https://nodejs.org/en/download)：
+**macOS 手动安装**需要包含 npm 的 [Node.js 22 或更新版本](https://nodejs.org/en/download)。**Git 是可选的**，仅用于克隆仓库和通过 Git 更新，渲染不需要它。
+
+**不用 Git：下载 ZIP 安装**
+
+1. [下载技能 ZIP](https://github.com/109km/photos-to-album/archive/refs/heads/main.zip) 并解压。
+2. 将解压得到的 `photos-to-album-main` 文件夹重命名为 `photos-to-album`。
+3. 将它移入 `~/.codex/skills/`（没有这个文件夹就创建）。如果配置了 `CODEX_HOME`，则使用该目录下的 `skills/`。最终应存在 `~/.codex/skills/photos-to-album/SKILL.md`，不要多嵌套一层文件夹。已有安装请保留，不要直接覆盖。
+4. 在安装后的 `photos-to-album` 文件夹中打开终端，运行 `npm run setup`；也可以让 Codex 在该目录运行初始化。
+
+**使用 Git：克隆并初始化**
 
 ```sh
 album_skill_dir="${CODEX_HOME:-$HOME/.codex}/skills/photos-to-album"
@@ -57,7 +67,7 @@ fi
 
 **在公司使用？** Remotion 对个人、非营利组织以及员工不超过 3 人的营利组织免费。员工更多的营利组织需要付费 Company License。渲染前请阅读[许可说明](#许可证与发布状态)。
 
-**如果安装已报告成功，无需再次运行初始化。** 上述安装步骤已经运行初始化。若你只是复制了技能文件夹，请在该文件夹中打开终端，执行：
+**如果安装已报告成功，无需再次运行初始化。** 上面两种安装方式均包含初始化步骤。若你只是复制了技能文件夹，请在该文件夹中打开终端，执行：
 
 ```sh
 npm run setup
