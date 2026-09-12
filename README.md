@@ -41,6 +41,16 @@ Do not overwrite an existing installation. Report local rendering readiness
 and whether AI styling and person preservation are available or still unverified.
 ```
 
+**Install with the Skills CLI**
+
+With Node.js/npm and Git available, run:
+
+```sh
+npx skills add 109km/photos-to-album
+```
+
+Choose Codex and your preferred installation scope if prompted. The CLI installs the skill files; it does **not** run this skill's rendering setup. In the installed folder, run `npm run setup`, or tell Codex: **“Run setup for the installed photos-to-album skill and verify rendering.”** Use the ZIP method below if you do not have Git.
+
 **Manual installation on macOS** requires [Node.js 22 or newer](https://nodejs.org/en/download) with npm. **Git is optional**: it is used only for cloning and Git-based updates, not rendering.
 
 **Without Git — download the ZIP:**
@@ -68,7 +78,7 @@ This uses your configured `CODEX_HOME`, or `~/.codex` by default. Existing files
 
 **Using this at a company?** Remotion is free for individuals, nonprofits and for-profit organizations with up to 3 employees. Larger for-profit organizations need a paid Company License. See [licensing details](#license-and-release-status) before rendering.
 
-**Skip running setup again if installation already reported success.** Both installation methods above include setup. If you only copied the skill folder, open a terminal there and run:
+**Skip running setup again if installation already reported success.** The Codex and manual instructions include setup; after a Skills CLI install, run it once as described above. If you only copied the skill folder, open a terminal there and run:
 
 ```sh
 npm run setup
