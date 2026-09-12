@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "remotion": "4.0.518",
+    "@remotion/bundler": "4.0.518",
+    "@remotion/renderer": "4.0.518",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "sharp": "0.35.4"
+  },
+  "name": "photos-to-album",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "check": "node scripts/setup.mjs --check",
+    "demo": "node examples/demo.mjs",
+    "test": "node --test scripts/options.test.mjs"
+  },
+  "license": "MIT"
+}

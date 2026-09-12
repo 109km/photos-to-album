@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="460" viewBox="0 0 1040 460" role="img" aria-labelledby="title desc">
+<title id="title">Video canvas and open album ratios</title>
+<desc id="desc">A 16:9 canvas contains a 2.26:1 album; a 9:16 canvas contains a 1:2.26 album with top and bottom pages turning upward. One upright photo covers each spread.</desc>
+<rect width="1040" height="460" rx="16" fill="#f8f6f1"/>
+<g font-family="Arial, sans-serif" fill="#253f43">
+<text x="308" y="40" text-anchor="middle" font-size="22" font-weight="bold">video_ratio: 16:9</text>
+<text x="845" y="40" text-anchor="middle" font-size="22" font-weight="bold">video_ratio: 9:16</text>
+<rect x="20" y="72" width="576" height="324" rx="6" fill="#e9e4da" stroke="#b5afa3" stroke-width="2"/>
+<rect x="755" y="72" width="180" height="320" rx="6" fill="#e9e4da" stroke="#b5afa3" stroke-width="2"/>
+<svg x="78" y="132" width="460" height="204" viewBox="0 0 452 200">
+<rect width="452" height="200" rx="8" fill="#9fbdba"/>
+<path d="M0 165L90 65L150 130L240 42L345 143L400 80L452 140V200H0Z" fill="#496f70"/>
+<path d="M226 0V200" stroke="#294d50" stroke-opacity=".4" stroke-width="2"/>
+<text x="226" y="184" text-anchor="middle" font-size="19" fill="white">image_ratio: 2.26:1</text>
+</svg>
+<svg x="788" y="104" width="113" height="256" viewBox="0 0 100 226">
+<rect width="100" height="226" rx="5" fill="#9fbdba"/>
+<circle cx="73" cy="49" r="12" fill="#dfad67"/>
+<path d="M0 175L30 85L55 150L77 115L100 165V226H0Z" fill="#496f70"/>
+<path d="M0 113H100" stroke="#294d50" stroke-opacity=".6" stroke-width="1"/>
+</svg>
+<text x="845" y="380" text-anchor="middle" font-size="16">image_ratio: 1:2.26</text>
+<path d="M966 310V165L958 180M966 165L974 180" fill="none" stroke="#253f43" stroke-width="3"/>
+<text x="308" y="430" text-anchor="middle" font-size="18">1 photo = 1 open spread</text>
+<text x="845" y="430" text-anchor="middle" font-size="18">1 photo = 1 open spread</text>
+</g>
+</svg>

@@ -1,0 +1,7 @@
+node_modules/
+.setup-check-*/
+.photos-to-album-*/
+outputs/
+.env
+.env.*
+.DS_Store

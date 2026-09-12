@@ -1,0 +1,25 @@
+# Travel album
+
+Resolve `photo_style` before generating. Its default is fine loose brown-black ink and translucent watercolor, with pigment pooling and dry-brush detail. If provided, replace only those medium-specific techniques with the requested treatment; do not mix in the default ink/watercolor techniques unless requested. Keep the refined travel-journal composition and warm ivory paper grain in either case. Preserve defining landscapes, horizon, landmark shapes and meaningful source colors; use source-appropriate ochre, terracotta, sage and slate blue. All human regions remain photographic and unchanged as required by SKILL.md.
+
+For the internal animation master, generate a flat continuous scene across the entire requested artwork ratio. No inset picture, blank paper border, book outline, page stack, crease, perspective, tabletop, cast book shadow, invented captions, stamps, dates or watermarks. Expand non-human scenery to fit; disclose extensions. Keep faces away from the eventual central fold. A paper texture may cover scenery, never the human exclusion mask.
+
+Internal-master prompt anchor: “Edit the supplied photograph into a travel scene rendered in {photo_style} on warm ivory paper. Output a flat full-bleed {image_ratio} canvas. Protect every human pixel and all clothing/accessories; do not paint over or regenerate people. Extend scenery only. No book mockup or blank margins.” Apply the mask/compositing acceptance gate after generation.
+
+## Delivered styled photos: open-book presentation
+
+Inspect [the bundled synthetic book reference](../assets/book-reference.png), exported through the shared renderer from examples/demo.mjs. It defines book geometry and material only; do not copy its demonstration landscape into user photos. The vector artwork is for reproducible testing, not the default photo treatment.
+
+Each delivered styled photo must look like this open book: thin warm ivory perimeter, softly rounded outer corners, subtle closely spaced page layers, shallow thickness, narrow recessed middle fold with gentle shadow and highlight along the fold, and a soft diffuse warm shadow beneath the lower edge. Use a near-overhead view, warm cream surrounding surface, and the same geometry, scale, lighting and placement across all photos. The artwork fills both pages to the physical edge, with no inset picture border. Avoid doubled rims, thick cover lips and hard black creases.
+
+Export this presentation from the shared `TravelAlbumBook` component through the bundled render script, which writes 4K stills beside the MP4 in `<output.mp4>.stills/`. `stillIndex` selects a resting spread; it uses the same edges, page layers, crease, background and shadows as the video. Do not generate a separate book mockup or maintain another SVG/CSS framing implementation. Flat masters remain the internal textures. Changes to the book design must update this shared component and be tested in both outputs. Inspect a still and its corresponding resting video frame at comparable book size; they must have matching material and lighting. Both use the requested artwork ratio without stretching people.
+
+Never pass the book-framed still into the page-turn texture renderer: the renderer supplies its own geometry, fold, edges and shadow. This distinction is internal to production; the user receives the requested book-edged photos.
+
+The canonical implementation is the portable template in `../assets/travel-album/`. Run `npm run demo` to inspect its current behavior; no private reference video is required. It uses a cream radial background (#fcfaf5 to #e7e0d3), restrained opening zoom, thin ivory cover and paper stack, rounded corners, subtle crease and soft shadow, with an 18-segment curved page (right-to-left for landscape/square videos; bottom-to-top for portrait videos) and damped spring (stiffness 150, damping 22). Front and back use opposite outer-corner masks. Only interior strips overlap; the outer edge must not protrude.
+
+Resolve orientation from the video before preparing artwork. Portrait video defaults to 1:2.26 upright artwork, top/bottom pages and a horizontal center fold; other video defaults to 2.26:1 and left/right pages. Honor an explicit image ratio without changing orientation-driven turn direction. The shared renderer passes verticalTurn to both still and video exports.
+
+Center the album with an 80% maximum frame width and height, retaining artwork ratio. This gives 10% left/right margins in the default landscape layout; taller artwork is constrained by height. Keep the turning page within the frame. Default pacing: 2-second opening, 2-second hold per image, 1-second turn between images, 2-second final hold. The `duration` parameter overrides only the per-image hold (default 2 seconds). N images total N × (duration + 1) + 3 seconds. With default timing, one image is a six-second single-spread view. Use 60 fps for smooth turns.
+
+For a new custom artwork ratio, inspect the turn's perspective envelope and reduce the whole album uniformly only if needed to keep the page visible. Do not crop the person or alter the source texture to solve layout.

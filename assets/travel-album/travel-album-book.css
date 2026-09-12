@@ -1,0 +1,34 @@
+.ta-stage { position:absolute; inset:0; perspective:1750px; perspective-origin:50% 46%; background:radial-gradient(ellipse at 45% 35%,#fcfaf5,#e7e0d3); }
+.ta-scene { position:absolute; left:50%; top:50%; width:var(--ta-width); height:var(--ta-height); transform-style:preserve-3d; }
+.ta-shadow { position:absolute; left:3%; right:3%; top:94%; height:10%; background:radial-gradient(ellipse,rgba(62,47,29,.42),transparent 72%); filter:blur(calc(var(--ta-unit) * 16)); }
+.ta-cover { position:absolute; inset:calc(var(--ta-unit) * 2) calc(var(--ta-unit) * -9) calc(var(--ta-unit) * -9); background:#d8cfbd; border-radius:calc(var(--ta-radius) + var(--ta-unit) * 9); box-shadow:0 calc(var(--ta-unit) * 5) calc(var(--ta-unit) * 10) #3a2c2633; }
+.ta-page-stack { position:absolute; inset:0 calc(var(--ta-unit) * -7) calc(var(--ta-unit) * -6); background:#eee6d6; border:calc(var(--ta-unit) * 1) solid #c8beaa; border-radius:calc(var(--ta-radius) + var(--ta-unit) * 7); box-shadow:inset 0 0 0 calc(var(--ta-unit) * 2) #faf6ed,inset 0 0 0 calc(var(--ta-unit) * 3) #cfc5b3,inset 0 0 0 calc(var(--ta-unit) * 5) #f7f0e2; }
+.ta-page-rim { position:absolute; inset:calc(var(--ta-unit) * -1) calc(var(--ta-unit) * -3) calc(var(--ta-unit) * -3); background:#fbf5e8; border-radius:calc(var(--ta-radius) + var(--ta-unit) * 3); }
+.ta-spread,.ta-static { position:absolute; top:0; height:100%; background-size:var(--ta-width) var(--ta-height); background-repeat:no-repeat; }
+.ta-spread { left:0; width:100%; border-radius:var(--ta-radius); }
+.ta-static { width:50%; }
+.ta-left { left:0; border-radius:var(--ta-radius) 0 0 var(--ta-radius); background-position:left top; }
+.ta-right { left:50%; border-radius:0 var(--ta-radius) var(--ta-radius) 0; background-position:right top; }
+.ta-gutter { position:absolute; left:48.4%; top:0; width:3.2%; height:100%; background:linear-gradient(90deg,transparent 0%,rgba(53,39,22,.055) 32%,rgba(53,39,22,.19) 49%,rgba(255,253,244,.065) 53%,rgba(255,253,244,.02) 70%,transparent 100%); transform:translateZ(.1px); pointer-events:none; }
+.ta-cast-left,.ta-cast-right { position:absolute; top:0; height:100%; width:24%; transform:translateZ(.2px); pointer-events:none; }
+.ta-cast-left { right:50%; background:linear-gradient(270deg,#3426144d,transparent 82%); }
+.ta-cast-right { left:50%; background:linear-gradient(90deg,#3426143d,transparent 82%); }
+.ta-leaf { position:absolute; left:50%; top:0; width:50%; height:100%; transform-style:preserve-3d; }
+.ta-strip { position:absolute; top:0; height:100%; transform-origin:left center; transform-style:preserve-3d; }
+.ta-face { position:absolute; top:0; bottom:0; left:0; right:-1.1px; backface-visibility:hidden; -webkit-backface-visibility:hidden; background-size:var(--ta-width) var(--ta-height); background-repeat:no-repeat; overflow:hidden; }
+.ta-back { transform:rotateY(180deg); }
+.ta-face-shade,.ta-face-light { position:absolute; inset:0; pointer-events:none; }
+.ta-face-light { background:#fffaf0; }
+
+/* Portrait books hinge across the middle; the bottom leaf turns upward. */
+.ta-vertical { perspective-origin:50% 50%; }
+.ta-vertical .ta-static { width:100%; height:50%; }
+.ta-vertical .ta-left { left:0; top:0; border-radius:var(--ta-radius) var(--ta-radius) 0 0; background-position:left top; }
+.ta-vertical .ta-right { left:0; top:50%; border-radius:0 0 var(--ta-radius) var(--ta-radius); background-position:left bottom; }
+.ta-vertical .ta-leaf { left:0; top:50%; width:100%; height:50%; }
+.ta-vertical .ta-strip { transform-origin:center top; }
+.ta-vertical .ta-back { transform:rotateX(180deg); }
+.ta-vertical .ta-gutter { left:0; top:48.4%; width:100%; height:3.2%; background:linear-gradient(180deg,transparent 0%,rgba(53,39,22,.055) 32%,rgba(53,39,22,.19) 49%,rgba(255,253,244,.065) 53%,rgba(255,253,244,.02) 70%,transparent 100%); }
+.ta-vertical .ta-cast-left,.ta-vertical .ta-cast-right { left:0; right:auto; width:100%; height:24%; }
+.ta-vertical .ta-cast-left { top:26%; background:linear-gradient(0deg,#3426144d,transparent 82%); }
+.ta-vertical .ta-cast-right { top:50%; background:linear-gradient(180deg,#3426143d,transparent 82%); }

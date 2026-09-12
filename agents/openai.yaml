@@ -1,0 +1,4 @@
+interface:
+  display_name: "Photos to Album"
+  short_description: "Preserve people in styled photo album videos"
+  default_prompt: "Use $photos-to-album to turn my photos into an album video using my requested photo style while preserving the source people."
