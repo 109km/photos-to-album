@@ -58,7 +58,7 @@ This uses your configured `CODEX_HOME`, or `~/.codex` by default. Existing files
 
 **Using this at a company?** Remotion is free for individuals, nonprofits and for-profit organizations with up to 3 employees. Larger for-profit organizations need a paid Company License. See [licensing details](#license-and-release-status) before rendering.
 
-The installation above already runs setup. If you only copied the skill folder, open a terminal there and run:
+**Skip running setup again if installation already reported success.** The installation above already runs setup. If you only copied the skill folder, open a terminal there and run:
 
 ```sh
 npm run setup
@@ -89,6 +89,38 @@ $photos-to-album photo_style: origin, duration: 2s
 ```
 
 Start with `origin`: it needs no image-generation tool. To try the renderer before using photos, run `npm run demo` from the skill folder.
+
+## Which photos should I use?
+
+Start with **3–5 JPEG/JPG or PNG photos**. This is a recommended first batch, not a hard limit. Larger batches take longer, especially with AI styling and 4K rendering.
+
+- **JPEG/JPG and PNG:** recommended input formats. Use full-resolution originals where possible.
+- **iPhone HEIC/HEIF:** export copies as JPEG or PNG first. Direct support depends on the image tools and installed decoders; it is not guaranteed by setup.
+- **Camera RAW** (such as RAF, CR2/CR3, NEF, ARW or DNG): develop/export to JPEG or PNG in your photo editor first. This skill does not provide a RAW development workflow.
+- Other formats are not part of the beginner compatibility promise. Ask Codex to check a sample before a batch. A file accepted as a chat attachment is not necessarily usable by the image editor or renderer.
+
+## Where are my finished files?
+
+Tell Codex where to save the album, for example:
+
+```text
+Save this album in ~/Downloads/my-travel-album/ and give me links to the video and book images when finished.
+```
+
+Without a location, Codex should choose a new job folder under `outputs/` in the current workspace and tell you its full path before starting. This is the agent workflow convention; the renderer itself requires an explicit MP4 path.
+
+For an output named `album.mp4`, the result looks like:
+
+```text
+my-travel-album/
+  album.mp4
+  album.mp4.stills/
+    01-book.png
+    02-book.png
+  album.mp4.json
+```
+
+Prepared artwork and the source-to-output mapping also stay in the job folder. The JSON metadata contains local source paths: keep it private when sharing the video. Existing output names are not overwritten; choose a new name for another version.
 
 ## Choose the photo order
 
@@ -128,7 +160,9 @@ $photos-to-album photo_style: origin, duration: 2s
 $photos-to-album photo_style: watercolor, quality: 4k
 ```
 
-**AI photography treatment (changes scenery)**
+**AI photography treatment (regenerates scenery)**
+
+This generates new non-human scenery in a photographic style; it is not a conventional exposure, sharpness or color enhancement of the original photo. People still require source-preserving masks and compositing. Choose `origin` to keep the original photo content.
 
 ```text
 $photos-to-album photo_style: master award photography, duration: 2s
