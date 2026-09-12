@@ -6,11 +6,11 @@ English | [简体中文](README_CN.md)
 
 A Codex skill that turns a photo collection into a page-turning MP4 and matching book-style images. Keep your original photos, or give the scenery a new artistic treatment.
 
-[![Watch the demo: ten travel photos in a page-turning album](assets/demo-poster.jpg)](assets/demo-4k.mp4)
+![Animated preview of the page-turning album](assets/demo.gif)
 
-**[Watch the 4K demo](assets/demo-4k.mp4)** · 10 photos · 33 seconds · 60 fps · 2-second holds
+**[Download the full 4K demo](https://github.com/109km/photos-to-album/raw/refs/heads/main/assets/demo-4k.mp4)** · 10 photos · 33 seconds · 60 fps · 2-second holds
 
-*Made with the travel-album style. Click the preview to open the MP4 (50 MB). For a small, reproducible sample using synthetic landscapes, run `npm run demo`—no photos or image-generation account needed.*
+*Made with the travel-album style. The GIF above previews the page-turning effect. Download the full travel-photo MP4 (50 MB) to watch it in your video player; the direct link bypasses GitHub’s large-file preview. For a small, reproducible sample using synthetic landscapes, run `npm run demo`—no photos or image-generation account needed.*
 
 [Quick start](#quick-start) · [Examples](#try-it) · [Settings](#settings) · [Troubleshooting](references/troubleshooting.md) · [Contributing](CONTRIBUTING.md)
 

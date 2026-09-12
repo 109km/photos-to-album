@@ -6,11 +6,11 @@
 
 [English](README.md) | 简体中文
 
-[![观看旅行照片翻页相册演示](assets/demo-poster.jpg)](assets/demo-4k.mp4)
+![翻页相册动画预览](assets/demo.gif)
 
-**[观看 4K 演示](assets/demo-4k.mp4)** · 10 张照片 · 33 秒 · 60 帧/秒 · 每张停留 2 秒
+**[下载完整 4K 演示](https://github.com/109km/photos-to-album/raw/refs/heads/main/assets/demo-4k.mp4)** · 10 张照片 · 33 秒 · 60 帧/秒 · 每张停留 2 秒
 
-*使用 travel-album 样式制作。点击预览打开 MP4（50 MB）。另可运行 `npm run demo` 生成小型矢量山景示例，无需照片或图片生成服务。*
+*使用 travel-album 样式制作。上方 GIF 展示翻页效果。下载完整旅行照片 MP4（50 MB）后，使用视频播放器观看；下载链接可绕过 GitHub 的大文件预览限制。另可运行 `npm run demo` 生成小型矢量山景示例，无需照片或图片生成服务。*
 
 [快速开始](#快速开始) · [使用示例](#使用示例) · [参数说明](#参数说明) · [故障排查](#遇到问题怎么办) · [参与贡献](CONTRIBUTING.md)
 
