@@ -53,7 +53,7 @@ export const TravelAlbumBook = ({images, imageRatio, stillIndex, verticalTurn = 
   const shade = Math.sin(Math.PI * progress);
   const zoom = .985 + .015 * Math.sin(Math.min(1, time / 2) * Math.PI / 2);
   return <div className={`ta-stage${verticalTurn ? ' ta-vertical' : ''}`} style={{'--ta-width': `${WIDTH}px`, '--ta-height': `${HEIGHT}px`, '--ta-unit': `${longEdge / 1536}px`, '--ta-radius': `${Math.min(longEdge * .0185, Math.min(WIDTH, HEIGHT) * .1)}px`, perspective: (verticalTurn ? height : width) * 1750 / 1920} as CSSProperties}>
-    {pageFlipSound && stillIndex === undefined && images.slice(1).map((_, i) => <Sequence key={`sound-${i}`} from={Math.round((2 + duration + i * (duration + 1)) * fps)} durationInFrames={Math.round(.7 * fps)} layout="none"><Audio src={staticFile('page-flip.wav')} volume={.7} /></Sequence>)}
+    {pageFlipSound && stillIndex === undefined && images.slice(1).map((_, i) => <Sequence key={`sound-${i}`} from={Math.round((2 + duration + i * (duration + 1)) * fps)} durationInFrames={Math.round(.7 * fps)} layout="none"><Audio src={staticFile('page-flip.wav')} volume={1} /></Sequence>)}
     {images.map((src, i) => <Img key={i} src={staticFile(src)} style={{position: 'absolute', width: 1, height: 1, opacity: 0}} />)}
     <div className="ta-scene" style={{transform: `translate(-50%,-50%) scale(${zoom})`}}>
       <div className="ta-shadow" style={{opacity: 1 - shade * .42}} />
