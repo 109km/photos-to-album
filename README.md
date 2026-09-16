@@ -341,3 +341,5 @@ $photos-to-album photo_style: postcard-drawing, page_flip_sound: true
 ```
 
 Use `page_flip_sound: false` for silent output. In job JSON, use `"pageFlipSound": true` (the snake_case alias also works). A CC0 recording of a real page turn is bundled; no download or audio service is required during rendering. See [sound credits](assets/page-flip-source.md). Still images and single-page albums have no flip sound.
+
+First-use setup checks all six style contracts and the bundled page-turn recording, runs parameter tests, and renders both silent and sound-enabled sample videos plus book stills. All rendering assets are included in the repository. AI photo styling still needs an image-editing tool in your session; generated artwork can vary between runs.

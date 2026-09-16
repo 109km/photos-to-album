@@ -14,7 +14,7 @@ Run commands from the skill folder. Start with `npm run check`; it verifies pack
 | Permission denied | Use a skill folder writable by your user. Setup does not need global npm installation or sudo. |
 | Linux cannot launch Chrome | Install the libraries for your distribution in [Remotion's Linux guide](https://www.remotion.dev/docs/miscellaneous/linux-dependencies), then retry. Setup does not install OS packages; not every Linux distribution is supported. |
 | No image-editing tool | `origin` works without one. AI styles require a supported tool in the session; setup cannot provide account access. |
-| Person changed in a styled image | Reject that result. Review the source mask and restore the original person before rendering. |
+| Person changed in a styled image | Compare against the selected style contract: illustrated people are expected in styled modes. Correct lost identity, poses, clothing or anatomy before rendering. Use origin for unchanged photos. |
 | Ivory space around a photo | Expected in `origin` when photo and album ratios differ. Filling that space requires cropping or generating content, which origin avoids. |
 | “Image ratio differs from album ratio” | The CLI expects prepared canvases, not arbitrary original photos. See [the rendering guide](render.md). |
 | “Output artifacts exist” | Choose a new output filename. A previous MP4, stills folder or metadata file is protected, including partial output from a failed run. |
@@ -23,7 +23,7 @@ Run commands from the skill folder. Start with `npm run check`; it verifies pack
 
 ## What a passing check means
 
-The installed packages can prepare a synthetic image, launch the browser, render a short MP4, read its metadata and export book stills. It does not certify image-generation access, mask quality, arbitrary aspect ratios or every operating system.
+The installed packages can prepare a synthetic image, launch the browser, render a short MP4, read its metadata and export book stills. It does not certify image-generation access, styled-artwork fidelity, arbitrary aspect ratios or every operating system.
 
 ## What to include in a bug report
 

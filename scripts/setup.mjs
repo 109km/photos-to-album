@@ -27,6 +27,8 @@ try {
     const installed = JSON.parse(await fs.readFile(path.join(root,'node_modules',name,'package.json'),'utf8')).version;
     if (installed !== version) throw new Error(`${name}: expected ${version}, found ${installed}. Run npm run setup.`);
   }
+  for (const file of ['assets/page-flip.wav', 'assets/page-flip-source.md', ...['watercolor','pencil','illustration','graffiti','hand-drawing-story','postcard-drawing'].map(style => `references/${style}.md`)]) await fs.access(path.join(root,file));
+  run(process.execPath, ['--test', path.join(root,'scripts/options.test.mjs')]);
   const sharp = require('sharp');
   const {ensureBrowser, getVideoMetadata} = require('@remotion/renderer');
   console.log('2/3 Checking the rendering browser (downloads it if needed)…');
@@ -44,12 +46,19 @@ try {
     run(process.execPath,[path.join(root,'scripts/render.mjs'),job,output,root]);
     const metadata = await getVideoMetadata(output);
     if (metadata.width !== 1280 || metadata.height !== 720 || Math.abs(metadata.durationInSeconds-.1) > .03) throw new Error('Test video metadata does not match the requested output.');
+    if (metadata.audioCodec !== null) throw new Error('Default export must be silent.');
+    const soundOutput = path.join(temp,'sound.mp4');
+    await fs.writeFile(job,JSON.stringify({images:['0.png','1.png'],quality:'720p',duration:1,pageFlipSound:true,frameRange:[180,221]}));
+    run(process.execPath,[path.join(root,'scripts/render.mjs'),job,soundOutput,root]);
+    const soundMetadata = await getVideoMetadata(soundOutput);
+    // AAC encoder padding can add up to a few audio frames to this short clip.
+    if (soundMetadata.audioCodec !== 'aac' || Math.abs(soundMetadata.durationInSeconds-.7) > .08) throw new Error(`Page-flip audio export failed: ${JSON.stringify(soundMetadata)}`);
     for (const name of ['01-book.png','02-book.png']) {
       const still = await sharp(path.join(output+'.stills',name)).metadata();
       if (still.width !== 3840 || still.height !== 1699) throw new Error('Book still dimensions are incorrect.');
     }
   } finally { await fs.rm(temp,{recursive:true,force:true}); }
-  console.log('\nReady: local image preparation and MP4 rendering work. No personal photos were used.\nStyled image generation still requires an image-editing tool in your Codex session.');
+  console.log('\nReady: six style contracts, local image preparation, book stills, silent MP4 and optional page-flip audio rendering work. No personal photos were used.\nStyled image generation still requires an image-editing tool in your Codex session.');
 } catch (error) {
   console.error(`\nSetup/check failed: ${error.message}\nSee README.md → Troubleshooting. Setup has not been verified.`);
   process.exitCode = 1;

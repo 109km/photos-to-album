@@ -54,3 +54,10 @@ test('optional flip sound supports aliases and rejects ambiguity',()=>{
  assert.throws(()=>normalizeOptions({pageFlipSound:true,翻页音效:'关闭'}),/参数冲突/);
  assert.throws(()=>normalizeOptions({pageFlipSound:'sometimes'}),/must be/);
 });
+
+test('all six built-in styles accept English and Chinese names',()=>{
+ for (const [id,cn] of [['watercolor','水彩'],['pencil','彩色铅笔'],['illustration','趣味插画'],['graffiti','街头涂鸦'],['hand-drawing-story','手绘故事'],['postcard-drawing','明信片手绘']]) {
+  assert.equal(normalizeOptions({photo_style:id}).photo_style,id);
+  assert.equal(normalizeOptions({照片风格:cn}).photo_style,id);
+ }
+});

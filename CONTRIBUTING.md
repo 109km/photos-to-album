@@ -27,7 +27,7 @@ For a renderer change, inspect a resting spread, the full page turn and its land
 
 ## Add a photo treatment
 
-`photo_style` accepts a description; a new artistic medium usually needs no renderer changes. Change only the non-human scenery treatment. Preserve the defaults when the parameter is omitted.
+`photo_style` accepts a description; a new artistic medium usually needs no renderer changes. Follow the selected style contract for the whole scene, including recognizable people. Preserve the defaults when the parameter is omitted.
 
 Use a dedicated reference document only when the mode needs special behavior. `origin` is one example: it skips generation and uses contain fitting. Link the document from SKILL.md and add a short README example. Keep the parameter name consistent.
 
