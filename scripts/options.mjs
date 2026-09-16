@@ -17,7 +17,15 @@ const style = value => {
   };
   return builtIns[normalized] ?? text(value);
 };
+const sound = value => {
+  if (typeof value === 'boolean') return value;
+  const v = text(value).toLowerCase();
+  if (['true','yes','on','是','开启','有'].includes(v)) return true;
+  if (['false','no','off','否','关闭','无'].includes(v)) return false;
+  throw new Error('pageFlipSound must be true or false / 翻页音效必须为开启或关闭');
+};
 const fields = [
+  ['pageFlipSound', ['page_flip_sound','翻页音效'], sound],
   ['images', ['图片','照片'], value => value],
   ['imageRatio', ['image_ratio','图片比例','相册比例'], ratios],
   ['videoRatio', ['video_ratio','视频比例'], ratios],

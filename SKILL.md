@@ -27,7 +27,7 @@ An explicit user sequence takes priority. Otherwise preserve attachment order; i
 | Video ratio | 16:9 | Independent of artwork ratio |
 | Video quality | 4k | 720p, 1080p, 4k |
 | `duration` | 2 seconds | Positive seconds per photo, e.g. `2s`; excludes the 1-second turn |
-| Video format | H.264 MP4, opaque, silent | Follow explicit user choices |
+| Video format | H.264 MP4, opaque, silent by default | Follow explicit user choices |
 
 For custom video ratios, quality means a short edge of 720/1080/2160, with the other edge calculated from the ratio and both rounded to even pixels. Standard landscape outputs are 1280×720, 1920×1080, 3840×2160. Resolve video orientation before image preparation: portrait video (width < height, including 9:16) defaults to a 1:2.26 vertical album with top/bottom pages, a horizontal fold and bottom-to-top turns. Landscape/square video defaults to 2.26:1 and right-to-left turns. An explicit artwork ratio overrides the shape, not the orientation-driven turn direction. Generate/prepare upright artwork at the resolved ratio; never rotate people sideways or distort old artwork to fit. Preserve this orientation in book stills too.
 
@@ -70,3 +70,7 @@ The renderer normalizes documented English/Chinese JSON aliases through scripts/
 Add `references/<style-id>.md` with image direction, material/animation behavior, defaults, and its renderer entrypoint. Add an `assets/<style-id>/` template only when it needs different rendering. Add its English and Chinese aliases to `scripts/options.mjs`, SKILL.md, README.md and README_CN.md. Select the requested style explicitly; keep `travel-album` as the omitted-style default. Shared settings and subject-quality guidance remain here. No plugin registry or dispatch framework is needed; the renderer accepts the chosen template path.
 
 Example: `$photos-to-album` with attached photos, `quality: 4k`, `video_ratio: 9:16`, `image_ratio: 2.26:1`.
+
+## Optional page-flip sound
+
+Default `pageFlipSound` is `false`. Map `page_flip_sound` or `翻页音效` to this boolean; accept true/false, yes/no, on/off, 开启/关闭. Carry the resolved setting into the renderer job. When enabled, the shared book component plays the bundled `assets/page-flip.wav` at each page-turn start: 2 + hold + index × (hold + 1) seconds. No sound is scheduled for stills or single-page albums. Preserve silent output when omitted. The sound is an original locally synthesized paper rustle.

@@ -33,7 +33,7 @@ test('renderer defaults to 4K and two-second holds and preserves explicit overri
    const job=join(dir,'job.json');
    await fs.writeFile(job,JSON.stringify({images:['photo.png','photo.png'],...setting}));
    const plan=JSON.parse(execFileSync(process.execPath,[fileURLToPath(new URL('./render.mjs',import.meta.url)),job,join(dir,'unused.mp4'),'--plan'],{encoding:'utf8'}));
-   assert.equal(plan.duration,hold);assert.equal(plan.durationInFrames,frames);
+   assert.equal(plan.pageFlipSound,false);assert.equal(plan.duration,hold);assert.equal(plan.durationInFrames,frames);
    assert.equal(plan.width,width);assert.equal(plan.height,height);
    assert.equal(plan.verticalTurn,height > width);assert.equal(plan.imageRatio,2.26);
   }
@@ -46,4 +46,11 @@ test('renderer defaults to 4K and two-second holds and preserves explicit overri
    assert.equal(plan.width,2160);assert.equal(plan.height,3840);
   }
  } finally {await fs.rm(dir,{recursive:true,force:true});}
+});
+
+test('optional flip sound supports aliases and rejects ambiguity',()=>{
+ for(const value of [true,'true','yes','on','开启']) assert.equal(normalizeOptions({翻页音效:value}).pageFlipSound,true);
+ for(const value of [false,'false','no','off','关闭']) assert.equal(normalizeOptions({page_flip_sound:value}).pageFlipSound,false);
+ assert.throws(()=>normalizeOptions({pageFlipSound:true,翻页音效:'关闭'}),/参数冲突/);
+ assert.throws(()=>normalizeOptions({pageFlipSound:'sometimes'}),/must be/);
 });

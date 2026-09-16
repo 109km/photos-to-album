@@ -40,7 +40,7 @@ for (const file of images) {
   if (!metadata.width || !metadata.height || Math.abs(metadata.width / metadata.height / imageRatio - 1) > .002)
     throw new Error(`Image ratio differs from album ratio: ${file}`);
 }
-const props = {images: images.map((file,i) => `${i}${path.extname(file)}`), imageRatio, verticalTurn, width, height, fps:60, duration:hold, durationInFrames:Math.round(((hold + 1) * images.length + 3) * 60)};
+const props = {pageFlipSound: job.pageFlipSound ?? false, images: images.map((file,i) => `${i}${path.extname(file)}`), imageRatio, verticalTurn, width, height, fps:60, duration:hold, durationInFrames:Math.round(((hold + 1) * images.length + 3) * 60)};
 if (!Number.isSafeInteger(props.durationInFrames)) throw new Error('Duration exceeds supported numeric range');
 if (job.frameRange && (!Array.isArray(job.frameRange) || job.frameRange.length !== 2 || !job.frameRange.every(Number.isInteger) || job.frameRange[0] < 0 || job.frameRange[1] < job.frameRange[0] || job.frameRange[1] >= props.durationInFrames)) throw new Error('Invalid frameRange');
 console.log(JSON.stringify({...props, sources:images}, null, 2));
@@ -58,6 +58,7 @@ if (!planOnly) {
     await fs.cp(template, temp, {recursive:true});
     const publicDir = path.join(temp, 'public');
     await fs.mkdir(publicDir);
+    if (props.pageFlipSound) await fs.copyFile(fileURLToPath(new URL('../assets/page-flip.wav', import.meta.url)), path.join(publicDir, 'page-flip.wav'));
     await Promise.all(images.map((file,i) => fs.copyFile(file, path.join(publicDir, props.images[i]))));
     const {bundle} = require('@remotion/bundler');
     const {selectComposition, renderMedia, renderStill} = require('@remotion/renderer');
@@ -72,7 +73,7 @@ if (!planOnly) {
       const stillComposition = await selectComposition({serveUrl,id:'Album',inputProps:stillProps});
       await renderStill({serveUrl,composition:stillComposition,inputProps:stillProps,frame:120,output:path.join(stillDir, `${String(i+1).padStart(2,'0')}-book.png`),imageFormat:'png'});
     }
-    await renderMedia({serveUrl,composition,inputProps:props,outputLocation:output,codec:'h264',muted:true,pixelFormat:'yuv420p',crf:18,concurrency:4,...(job.frameRange ? {frameRange:job.frameRange} : {})});
+    await renderMedia({serveUrl,composition,inputProps:props,outputLocation:output,codec:'h264',muted:!props.pageFlipSound,pixelFormat:'yuv420p',crf:18,concurrency:4,...(job.frameRange ? {frameRange:job.frameRange} : {})});
     await fs.writeFile(output + '.json', JSON.stringify({...props,sources:images,frameRange:job.frameRange ?? null},null,2));
   } finally { await fs.rm(temp,{recursive:true,force:true}); }
 }

@@ -63,7 +63,7 @@ For `origin`, follow [origin.md](origin.md) to prepare proportionally fitted can
 ## Outputs
 
 ```text
-album.mp4                 H.264, silent, opaque background, 60 fps
+album.mp4                 H.264, silent by default, opaque background, 60 fps
 album.mp4.stills/
   01-book.png             First supplied image, with book presentation
   02-book.png
@@ -115,3 +115,7 @@ The template directory contains an `index.tsx` exporting a registered Remotion c
 - `stillIndex`: when supplied, render that resting spread through the same book component.
 
 Use calculateMetadata to honor video and still dimensions. Keep imagery fixed in its texture; animate page geometry and lighting. See [CONTRIBUTING.md](../CONTRIBUTING.md) for adding styles.
+
+## Optional sound
+
+Set `"pageFlipSound": true` in the job to add the bundled paper-rustle sound at every page-turn start. `page_flip_sound` and `翻页音效` are aliases. Default is false (silent). The setting is recorded in output metadata and passed to the shared component; alternate templates must explicitly support this prop. Still images never play audio.

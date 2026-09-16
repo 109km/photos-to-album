@@ -16,7 +16,7 @@ https://github.com/user-attachments/assets/9d328705-48eb-41b8-80d5-7d35b3325622
 
 ## What you get
 
-- A silent **MP4**, with curved page turns, paper edges and shadows.
+- An **MP4**, silent by default with optional page-flip sound, with curved page turns, paper edges and shadows.
 - Matching **book-style PNGs**, with a 3840-pixel long edge.
 - Your photos in the order you supplied, with original files untouched.
 - A choice of **original photos** or **AI-styled photos**.
@@ -331,3 +331,13 @@ The featured 4K demo was made from travel photos approved for this project's pub
 See [third-party and demo notices](THIRD_PARTY_NOTICES.md).
 
 [Report an issue](https://github.com/109km/photos-to-album/issues)
+
+## Optional page-flip sound
+
+Page-flip sound is **off by default**. Enable a soft paper rustle at each page turn:
+
+```text
+$photos-to-album photo_style: postcard-drawing, page_flip_sound: true
+```
+
+Use `page_flip_sound: false` for silent output. In job JSON, use `"pageFlipSound": true` (the snake_case alias also works). Sound is bundled and generated locally; no download or audio service is required. Still images and single-page albums have no flip sound.
