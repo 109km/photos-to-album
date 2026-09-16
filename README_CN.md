@@ -371,4 +371,4 @@ MIT 许可证仅覆盖本项目的原创代码和文档，不覆盖 Remotion 或
 $photos-to-album 照片风格: 明信片手绘, 翻页音效: 开启
 ```
 
-使用 `翻页音效: 关闭` 或 `page_flip_sound: false` 输出无声视频。任务 JSON 支持 `"pageFlipSound": true`、`page_flip_sound` 和 `翻页音效`。音效由本地合成并随技能附带，无需下载或调用音频服务。静态图片与只有一页的相册不会播放翻页声。
+使用 `翻页音效: 关闭` 或 `page_flip_sound: false` 输出无声视频。任务 JSON 支持 `"pageFlipSound": true`、`page_flip_sound` 和 `翻页音效`。音效采用 CC0 授权的真实翻页录音，随技能附带，渲染时无需下载或调用音频服务。详见[音效来源](assets/page-flip-source.md)。静态图片与只有一页的相册不会播放翻页声。

@@ -73,4 +73,4 @@ Example: `$photos-to-album` with attached photos, `quality: 4k`, `video_ratio: 9
 
 ## Optional page-flip sound
 
-Default `pageFlipSound` is `false`. Map `page_flip_sound` or `翻页音效` to this boolean; accept true/false, yes/no, on/off, 开启/关闭. Carry the resolved setting into the renderer job. When enabled, the shared book component plays the bundled `assets/page-flip.wav` at each page-turn start: 2 + hold + index × (hold + 1) seconds. No sound is scheduled for stills or single-page albums. Preserve silent output when omitted. The sound is an original locally synthesized paper rustle.
+Default `pageFlipSound` is `false`. Map `page_flip_sound` or `翻页音效` to this boolean; accept true/false, yes/no, on/off, 开启/关闭. Carry the resolved setting into the renderer job. When enabled, the shared book component plays the bundled `assets/page-flip.wav` at each page-turn start: 2 + hold + index × (hold + 1) seconds. No sound is scheduled for stills or single-page albums. Preserve silent output when omitted. The sound is a CC0 recording of a real page turn; see assets/page-flip-source.md for provenance.

@@ -340,4 +340,4 @@ Page-flip sound is **off by default**. Enable a soft paper rustle at each page t
 $photos-to-album photo_style: postcard-drawing, page_flip_sound: true
 ```
 
-Use `page_flip_sound: false` for silent output. In job JSON, use `"pageFlipSound": true` (the snake_case alias also works). Sound is bundled and generated locally; no download or audio service is required. Still images and single-page albums have no flip sound.
+Use `page_flip_sound: false` for silent output. In job JSON, use `"pageFlipSound": true` (the snake_case alias also works). A CC0 recording of a real page turn is bundled; no download or audio service is required during rendering. See [sound credits](assets/page-flip-source.md). Still images and single-page albums have no flip sound.
