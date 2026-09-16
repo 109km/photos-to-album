@@ -61,3 +61,8 @@ test('all six built-in styles accept English and Chinese names',()=>{
   assert.equal(normalizeOptions({照片风格:cn}).photo_style,id);
  }
 });
+
+test('colorful-pencil and street-graffiti resolve to their built-in styles',()=>{
+ assert.equal(normalizeOptions({photo_style:'colorful-pencil'}).photo_style,'pencil');
+ assert.equal(normalizeOptions({photo_style:'street-graffiti'}).photo_style,'graffiti');
+});
