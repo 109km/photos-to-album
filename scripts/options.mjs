@@ -5,9 +5,17 @@ const seconds = value => Number(text(value).replace(/(?:秒|s)$/i, '').trim());
 const quality = value => ({'高清':'720p','全高清':'1080p','超高清':'4k'}[text(value)] ?? text(value).toLowerCase());
 const style = value => {
   const normalized = text(value).toLowerCase();
-  if (['原图','原始照片','不改照片','origin'].includes(normalized)) return 'origin';
-  if (['postcard-drawing','明信片手绘','手绘明信片'].includes(normalized)) return 'postcard-drawing';
-  return text(value);
+  const builtIns = {
+    '原图':'origin','原始照片':'origin','不改照片':'origin','origin':'origin',
+    'travel-album':'travel-album','旅行相册':'travel-album','墨线水彩':'travel-album',
+    'watercolor':'watercolor','水彩':'watercolor',
+    'pencil':'pencil','彩色铅笔':'pencil','铅笔':'pencil',
+    'illustration':'illustration','趣味插画':'illustration','插画':'illustration',
+    'graffiti':'graffiti','街头涂鸦':'graffiti','涂鸦':'graffiti',
+    'hand-drawing-story':'hand-drawing-story','手绘故事':'hand-drawing-story',
+    'postcard-drawing':'postcard-drawing','明信片手绘':'postcard-drawing','手绘明信片':'postcard-drawing',
+  };
+  return builtIns[normalized] ?? text(value);
 };
 const fields = [
   ['images', ['图片','照片'], value => value],

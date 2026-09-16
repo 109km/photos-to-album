@@ -2,7 +2,7 @@
 
 **把你的照片，变成一本会翻页的相册。**
 
-这是一个 Codex 技能：将多张照片制作成翻页 MP4 视频，并导出配套的书本样式图片。你可以保留原图，也可以让 AI 为风景换一种画风。
+这是一个 Codex 技能：将多张照片制作成翻页 MP4 视频，并导出配套的书本样式图片。你可以保留原图，也可以让 AI 为人物和风景统一换一种画风。
 
 [English](README.md) | 简体中文
 
@@ -19,9 +19,9 @@ https://github.com/user-attachments/assets/9d328705-48eb-41b8-80d5-7d35b3325622
 - 一个无声 **MP4 视频**，包含弯曲翻页、纸张边缘和阴影。
 - 一组配套的**书本样式 PNG 图片**，长边为 3840 像素。
 - 照片按你提供的顺序排列，原始文件不会被覆盖。
-- 可选择**保留原图**或 **AI 风景风格化**。
+- 可选择**保留原图**或 **AI 照片风格化**。
 
-**横版和竖版照片都可以直接使用。** 在 AI 风格化模式下，技能会自动扩展照片周围的风景，填满所需相册比例：横屏或正方形视频默认为 **2.26:1**，9:16 等竖屏视频默认为 **1:2.26**。横版照片用于竖向相册时，会先向上、向下扩展风景，再生成视频。画面铺满书页，不拉伸照片、不添加空白条，并保留人物。你也可以通过 `相册比例`（`image_ratio`）指定其他比例。使用“原图”（`photo_style: origin`）模式时，不进行 AI 扩图，而是等比放入相册，空余区域使用象牙白；原始文件始终保持不变。
+**横版和竖版照片都可以直接使用。** 在 AI 风格化模式下，技能会自动扩展照片周围的风景，填满所需相册比例：横屏或正方形视频默认为 **2.26:1**，9:16 等竖屏视频默认为 **1:2.26**。横版照片用于竖向相册时，会先向上、向下扩展风景，再生成视频。画面铺满书页，不拉伸照片、不添加空白条，并保持人物可辨认。你也可以通过 `相册比例`（`image_ratio`）指定其他比例。使用“原图”（`photo_style: origin`）模式时，不进行 AI 扩图，而是等比放入相册，空余区域使用象牙白；原始文件始终保持不变。
 
 这是“智能体工作流程 + 本地渲染器”，不是在线网站，也不是单独执行一条命令就能生成 AI 图片的服务。
 
@@ -37,7 +37,7 @@ https://github.com/user-attachments/assets/9d328705-48eb-41b8-80d5-7d35b3325622
 请从 https://github.com/109km/photos-to-album 安装 photos-to-album
 到我的 Codex 技能目录。如果没有 Git，请使用仓库 ZIP。
 运行 npm run setup 并验证结果，不要覆盖已有安装。
-分别说明本地渲染是否就绪，以及 AI 风格化和人物保留能力是否可用或尚未验证。
+分别说明本地渲染是否就绪，以及 AI 风格化是否可用或尚未验证。
 ```
 
 **使用 Skills CLI 安装**
@@ -93,15 +93,15 @@ Ready: local image preparation and MP4 rendering work.
 
 也可以直接告诉 Codex：**“帮我初始化 photos-to-album 技能，并运行安装检查。”** 仅复制或安装技能文件夹，并不会自动执行初始化脚本。
 
-批量制作前，让 Codex 分别报告以下三项。**初始化成功仅代表本地渲染通过检查。** 这些是智能体需要做的检查，并不是初始化脚本自动输出的三个状态。
+批量制作前，让 Codex 分别报告以下两项。**初始化成功仅代表本地渲染通过检查。** 这些是智能体需要做的检查，并不是初始化脚本自动输出的两个状态。
 
 | 就绪检查 | Codex 应说明什么 |
 |---|---|
 | 原图渲染 | 初始化/安装检查中的 MP4 和书本图片导出是否通过 |
 | AI 风格化 | 当前会话是否有图片编辑工具；区分“可用”和“已测试” |
-| 人物保留 | 是否有保护蒙版及原始人物合成能力；先验证第一张，再处理其余照片 |
 
-每项使用“就绪”“不可用”或“尚未验证”，并说明依据。原图模式或没有人物时，不用的检查标为“不需要”。缺少必要能力时应在生成前说明，不能悄悄改变人物或切换模式。
+
+每项使用“就绪”“不可用”或“尚未验证”，并说明依据。原图模式下，不用的检查标为“不需要”。缺少必要能力时应在生成前说明，不能悄悄切换模式。
 
 ### 3. 上传照片，开始制作
 
@@ -160,9 +160,8 @@ my-travel-album/
 ```text
 使用 $photos-to-album，按文件名顺序处理这些附件照片。
 
-先检查原图渲染、AI 风格化、人物保留能力是否就绪。
-保留每个人的真实摄影形象，不改变人物。
-只将风景处理成细墨线与透明水彩风格。
+先检查原图渲染、AI 风格化能力是否就绪。
+将人物和风景统一处理成细墨线与透明水彩风格，保持人物可辨认。
 先给我看书本样式图片，等我批准后再制作视频。
 批准后制作 1080p、16:9 视频，每张停留 3 秒。
 ```
@@ -171,15 +170,49 @@ Codex 应先交付书本样式图片，并停在你要求的审核阶段。你�
 
 ## 使用示例
 
-### 明信片手绘——内置风格
+### 六种内置风格与演示视频
+
+点击预览图观看完整 720p MP4 演示。六种画风沿用相同的书本和翻页渲染器。默认基础风格为 `travel-album`；`origin` 为保留原图模式。
+
+#### 水彩 · `watercolor`
+
+[![水彩](assets/style-demos/watercolor.jpg)](https://github.com/109km/photos-to-album/blob/main/assets/style-demos/watercolor.mp4)
+
+[观看演示](https://github.com/109km/photos-to-album/blob/main/assets/style-demos/watercolor.mp4) · [下载 MP4](https://github.com/109km/photos-to-album/raw/refs/heads/main/assets/style-demos/watercolor.mp4) · [风格说明](references/watercolor.md)
+
+#### 彩色铅笔 · `pencil`
+
+[![彩色铅笔](assets/style-demos/pencil.jpg)](https://github.com/109km/photos-to-album/blob/main/assets/style-demos/pencil.mp4)
+
+[观看演示](https://github.com/109km/photos-to-album/blob/main/assets/style-demos/pencil.mp4) · [下载 MP4](https://github.com/109km/photos-to-album/raw/refs/heads/main/assets/style-demos/pencil.mp4) · [风格说明](references/pencil.md)
+
+#### 趣味插画 · `illustration`
+
+[![趣味插画](assets/style-demos/illustration.jpg)](https://github.com/109km/photos-to-album/blob/main/assets/style-demos/illustration.mp4)
+
+[观看演示](https://github.com/109km/photos-to-album/blob/main/assets/style-demos/illustration.mp4) · [下载 MP4](https://github.com/109km/photos-to-album/raw/refs/heads/main/assets/style-demos/illustration.mp4) · [风格说明](references/illustration.md)
+
+#### 街头涂鸦 · `graffiti`
+
+[![街头涂鸦](assets/style-demos/graffiti.jpg)](https://github.com/109km/photos-to-album/blob/main/assets/style-demos/graffiti.mp4)
+
+[观看演示](https://github.com/109km/photos-to-album/blob/main/assets/style-demos/graffiti.mp4) · [下载 MP4](https://github.com/109km/photos-to-album/raw/refs/heads/main/assets/style-demos/graffiti.mp4) · [风格说明](references/graffiti.md)
+
+#### 手绘故事 · `hand-drawing-story`
+
+[![手绘故事](assets/style-demos/hand-drawing-story.jpg)](https://github.com/109km/photos-to-album/blob/main/assets/style-demos/hand-drawing-story.mp4)
+
+[观看演示](https://github.com/109km/photos-to-album/blob/main/assets/style-demos/hand-drawing-story.mp4) · [下载 MP4](https://github.com/109km/photos-to-album/raw/refs/heads/main/assets/style-demos/hand-drawing-story.mp4) · [风格说明](references/hand-drawing-story.md)
+
+#### 明信片手绘 · `postcard-drawing`
+
+[![明信片手绘](assets/style-demos/postcard-drawing.jpg)](https://github.com/109km/photos-to-album/blob/main/assets/style-demos/postcard-drawing.mp4)
+
+[观看演示](https://github.com/109km/photos-to-album/blob/main/assets/style-demos/postcard-drawing.mp4) · [下载 MP4](https://github.com/109km/photos-to-album/raw/refs/heads/main/assets/style-demos/postcard-drawing.mp4) · [风格说明](references/postcard-drawing.md)
 
 ```text
-$photos-to-album 照片风格: 明信片手绘, 画质: 超高清
+$photos-to-album photo_style: postcard-drawing, quality: 4k
 ```
-
-[明信片手绘](references/postcard-drawing.md)（`postcard-drawing`，别名：`明信片手绘`、`手绘明信片`）提取照片中 3–5 个有识别度的主体、姿态和叙事关系，转化为轻松明快的独立旅行杂志插画。使用细微不规则线条、不透明水粉、马克笔和少量纸张颗粒，将 2–4 个单词的手写英文标题及一句英文短句直接融入彩色场景，不设置固定白色标题栏。
-
-此风格将人物和风景统一插画化，其风格约定优先于下文的人物摄影保留规则，不要求原始人物合成。原始照片不变，沿用同一套书本边缘和翻页渲染器。
 
 **保留原图**
 
@@ -187,15 +220,21 @@ $photos-to-album 照片风格: 明信片手绘, 画质: 超高清
 $photos-to-album 照片风格：原图，停留时间：2秒
 ```
 
-**水彩风景，保留真实人物**
+**水彩人物与风景**
 
 ```text
 $photos-to-album 照片风格：水彩，视频画质：超高清
 ```
 
-**AI 摄影处理（重新生成风景）**
+**街头涂鸦相册**
 
-这种模式会以摄影风格生成新的非人物风景，并非对原图进行常规曝光、锐度或色彩增强。人物仍需通过保护蒙版和原图合成保留。想保留原照片内容，请选择“原图”。
+```text
+$photos-to-album 照片风格：街头涂鸦，停留时间：2秒
+```
+
+**AI 摄影处理（重新生成场景）**
+
+这种模式会以摄影风格重新诠释人物和风景，并非对原图进行常规曝光、锐度或色彩增强。不需要人物蒙版或原始人物合成。想保留原照片内容，请选择“原图”。
 
 ```text
 $photos-to-album 照片风格：大师级摄影，停留时间：2秒
@@ -230,7 +269,7 @@ $photos-to-album 照片风格：水彩，视频比例：9：16
 
 | 中文参数 | 英文参数 | 默认值 | 可用值或示例 |
 |---|---|---|---|
-| `照片风格`（也可用 `图片风格`） | `photo_style` | 细墨线与透明水彩风景 | `原图`、`水彩`、`大师级摄影`，或自定义中文描述 |
+| `照片风格`（也可用 `图片风格`） | `photo_style` | 旅行相册 | `原图`、旅行相册、水彩、彩色铅笔、趣味插画、街头涂鸦、手绘故事、明信片手绘、大师级摄影，或自定义中文描述 |
 | `停留时间`（也可用 `每张时长`） | `duration` | `2秒` | `2秒`、`4秒`、`1.5秒`；使用正数 |
 | `视频画质`（也可用 `画质`） | `quality` | `4k` | `高清`＝720p，`全高清`＝1080p，`超高清`＝4k；也可直接写 720p、1080p、4K |
 | `视频比例` | `video_ratio` | `16:9` | `9:16`、`1:1`、`16：9`、`16比9` |
@@ -244,21 +283,21 @@ $photos-to-album 照片风格：水彩，视频比例：9：16
 
 ## 两种照片处理方式
 
-| | 原图模式 | AI 风景风格化 |
+| | 原图模式 | AI 照片风格化 |
 |---|---|---|
-| 照片内容 | 保留原始构图和颜色 | 对风景进行风格化，并扩展画面 |
-| 人物 | 不修饰、不重新生成 | 通过检查过的蒙版放回原始人物 |
+| 照片内容 | 保留原始构图和颜色 | 对人物和风景进行风格化，并扩展风景 |
+| 人物 | 不修饰、不重新生成 | 按所选画风进行风格化 |
 | 比例不一致 | 等比放入相册，空余区域使用象牙白 | 扩展风景以填满相册 |
 | 图片生成工具 | 不需要 | 当前 Codex 会话中必须可用 |
 
 两种模式都会在展示时加入书本边缘、中缝和阴影。原图模式仍会按展示尺寸等比缩放，因此导出像素并非与源文件逐字节一致。书页边缘保留少量安全留白，防止圆角裁掉照片内容。
 
-AI 模式不能只靠提示词保证人物不变。头发、手部、衣服和配饰都需要检查蒙版。小人物的自动蒙版可能漏掉肢体：智能体必须放大检查人物局部，修补遗漏，并在渲染前对照原图检查整个人物。仅验证蒙版内像素一致，不能证明蒙版完整覆盖了人物。如果缺少可靠的工具，智能体应明确说明限制，不能悄悄改变人物或切换模式。
+AI 模式允许人物和风景一起风格化，不要求人物蒙版、像素锁定或原始人物合成。渲染前应对照原图检查人物是否可辨认，以及肢体、姿态、衣服和配饰是否合理。
 
 ## 使用前了解这些限制
 
 - **初始化负责本地渲染，不负责开通 AI 服务。** 内置图片工具可用时无需另填 API Key，但仍受服务额度和费用规则约束。
-- **4K 表示输出尺寸，不保证原生细节。** 生成的风景可能经过放大；提高视频分辨率不会凭空恢复原照片细节。
+- **4K 表示输出尺寸，不保证原生细节。** 生成的画作可能经过放大；提高视频分辨率不会凭空恢复原照片细节。
 - **原图处理和渲染在本地进行。** AI 风格化会将参考图片发送给选定的图片服务。将照片附到 Codex 中也适用该服务的数据处理规则；这不是完全离线的工作流。
 - **目前在 macOS 上验证过。** Windows 和 Linux 尚未完成验证；部分 Linux 环境需要额外的浏览器系统库。4K 和大量照片会消耗更多时间、内存和磁盘空间。
 - **翻页时可能短暂超出画面边缘。** 这是目前已接受的动画限制。
