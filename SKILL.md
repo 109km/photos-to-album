@@ -37,6 +37,15 @@ For other values, `photo_style` is a generation-prompt parameter, independent of
 
 Example: `photo_style: colored-pencil illustration` changes only the non-human scenery treatment.
 
+## Built-in photo styles
+
+| Style | Chinese aliases | Contract | Character |
+|---|---|---|---|
+| `travel-album` | — | [travel-album.md](references/travel-album.md) | Default ink-and-watercolor scenery treatment |
+| `postcard-drawing` | 明信片手绘、手绘明信片 | [postcard-drawing.md](references/postcard-drawing.md) | Bright travel illustration in gouache and marker with integrated English lettering |
+
+For `photo_style: postcard-drawing`, read its contract before preparing images. This style intentionally illustrates the whole scene, including the principal people, and removes incidental crowds. Its whole-scene illustration rules override the photographic-person preservation and scenery-only rules elsewhere in this skill. Keep principal subjects recognizable and verify poses, clothing, anatomy and relationships. Do not require source-person compositing for this style. Preserve the existing shared book renderer, ratios, timing and output workflow.
+
 ## Chinese parameters
 
 Accept English, Chinese or mixed-language requests, including Chinese punctuation. Map `照片风格`/`图片风格` → `photo_style`, `停留时间`/`每张时长` → `duration`, `视频画质`/`画质` → `quality`, `视频比例` → `video_ratio`, and `相册比例`/`图片比例` → `image_ratio`. Map `原图`/`原始照片`/`不改照片` to `origin`; preserve custom Chinese style descriptions such as `水彩` or `大师级摄影` as artistic instructions. Map `高清` to `720p`, `全高清` to `1080p`, and `超高清` to `4k`. Accept decimal seconds such as `1.5秒` and ratios such as `16：9` or `16比9`. Interpret natural-language numbers in user prompts before writing numeric JSON. Do not silently resolve contradictory aliases; clarify the conflict. See [README_CN.md](README_CN.md) for examples.

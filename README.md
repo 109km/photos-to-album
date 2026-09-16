@@ -168,6 +168,16 @@ Codex should deliver the book-style images and stop at your requested review sta
 
 ## Try it
 
+### Postcard drawing — built-in style
+
+```text
+$photos-to-album photo_style: postcard-drawing, quality: 4k
+```
+
+[Postcard drawing](references/postcard-drawing.md) extracts 3–5 recognizable subjects, poses and narrative relationships into a bright, youthful travel-magazine illustration. It uses fine irregular lines, opaque gouache, marker color and subtle paper grain. A 2–4-word handwritten English title and one short English sentence are integrated into the colored scene, without a fixed white title bar. Chinese aliases: `明信片手绘` and `手绘明信片`.
+
+This style intentionally illustrates people and scenery together; its style contract overrides the photographic-person preservation rules below. The original photos remain untouched. It uses the same book frame and page-turn renderer.
+
 **Keep the photos as they are**
 
 ```text

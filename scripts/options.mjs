@@ -3,7 +3,12 @@ const text = value => String(value).trim();
 const ratios = value => text(value).replaceAll('：', ':').replaceAll('比', ':');
 const seconds = value => Number(text(value).replace(/(?:秒|s)$/i, '').trim());
 const quality = value => ({'高清':'720p','全高清':'1080p','超高清':'4k'}[text(value)] ?? text(value).toLowerCase());
-const style = value => ['原图','原始照片','不改照片','origin'].includes(text(value).toLowerCase()) ? 'origin' : text(value);
+const style = value => {
+  const normalized = text(value).toLowerCase();
+  if (['原图','原始照片','不改照片','origin'].includes(normalized)) return 'origin';
+  if (['postcard-drawing','明信片手绘','手绘明信片'].includes(normalized)) return 'postcard-drawing';
+  return text(value);
+};
 const fields = [
   ['images', ['图片','照片'], value => value],
   ['imageRatio', ['image_ratio','图片比例','相册比例'], ratios],
