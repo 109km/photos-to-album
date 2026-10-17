@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
 import {normalizeOptions} from './options.mjs';
+const pythonAvailable=spawnSync('python3',['-c','import sys; sys.exit(0 if sys.version_info >= (3,10) else 1)']).status===0;
 test('Chinese job equals English job',()=>{
  assert.deepEqual(normalizeOptions({照片:['a.png'],照片风格:'原图',停留时间:'2秒',画质:'超高清',相册比例:'2.26比1',视频比例:'16：9',帧范围:[0,5]}),normalizeOptions({images:['a.png'],photo_style:'origin',duration:'2s',quality:'4k',imageRatio:'2.26:1',videoRatio:'16:9',frameRange:[0,5]}));
 });
@@ -17,6 +19,36 @@ test('equivalent duplicate aliases accepted; contradictory aliases rejected',()=
 test('custom style descriptions and image order preserved',()=>{
  const value=normalizeOptions({照片:['乙.png','甲.png'],照片风格:'铅笔素描'});
  assert.deepEqual(value.images,['乙.png','甲.png']);assert.equal(value.photo_style,'铅笔素描');
+});
+
+test('memory album names normalize in English and Chinese without overriding conflicts',()=>{
+ assert.equal(normalizeOptions({照片风格:'淡彩回忆册'}).photo_style,'memory-sketch');
+ assert.equal(normalizeOptions({照片风格:'北欧人物纪念册'}).photo_style,'nordic-memory');
+ assert.equal(normalizeOptions({photo_style:'memory-sketch',照片风格:'淡彩回忆'}).photo_style,'memory-sketch');
+ assert.throws(()=>normalizeOptions({photo_style:'memory-sketch',照片风格:'北欧纪念册'}),/参数冲突/);
+});
+
+test('bundled hand-drawn calls extract complete recipes and keep source and aspect',{skip:!pythonAvailable},async()=>{
+ const {execFileSync}=await import('node:child_process');
+ const {fileURLToPath}=await import('node:url');
+ const script=fileURLToPath(new URL('./hand-drawn-prompt.mjs',import.meta.url));
+ const source=fileURLToPath(new URL('../assets/book-reference.png',import.meta.url));
+ for(const [style,id,aspect,extra] of [['淡彩回忆册','10','2.26:1',['--orange-focus','the kite']],['北欧人物纪念册','14','1:2.26',[]]]){
+  const call=JSON.parse(execFileSync(process.execPath,[script,'--style',style,'--subject','One child holding a kite','--source',source,'--aspect',aspect,...extra],{encoding:'utf8'}));
+  assert.equal(call.style_id,id);assert.equal(call.inputs.aspect,aspect);assert.equal(call.source_reference.path,source);
+  assert.ok(call.prompt.includes('One child holding a kite'));assert.ok(!call.prompt.includes('【主体】'));
+  const {prompt:fullRecipe}=JSON.parse(execFileSync('python3',['-B',fileURLToPath(new URL('../vendor/hand-drawn/scripts/render_prompt.py',import.meta.url)),'--style',id,'--subject','One child holding a kite','--aspect',aspect,'--format','json',...Object.entries(call.inputs.variables).filter(([key])=>key!=='主体').flatMap(([key,value])=>['--var',`${key}=${value}`])],{encoding:'utf8'}));
+  assert.ok(call.prompt.startsWith(fullRecipe));
+ }
+});
+
+test('hand-drawn prompt input errors fail instead of silently choosing another recipe',async()=>{
+ const {spawnSync}=await import('node:child_process');
+ const {fileURLToPath}=await import('node:url');
+ const script=fileURLToPath(new URL('./hand-drawn-prompt.mjs',import.meta.url));
+ for(const args of [['--style','watercolor','--subject','A child'],['--style','memory-sketch','--subject','A child'],['--style','nordic-memory','--subject','A child','--aspect','0:1']]){
+  assert.notEqual(spawnSync(process.execPath,[script,...args],{encoding:'utf8'}).status,0);
+ }
 });
 
 test('renderer defaults to 4K and two-second holds and preserves explicit overrides',async()=>{

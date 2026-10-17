@@ -1,4 +1,4 @@
 interface:
   display_name: "Photos to Album"
-  short_description: "Six photo styles, page-turn albums, optional flip sound"
-  default_prompt: "Use $photos-to-album to create a styled photo album with my chosen photo style. Offer the six built-in artwork styles, preserve recognizable subjects, and keep page-flip sound off unless I request it."
+  short_description: "21 hand-drawn recipes, original photos and page-turn albums"
+  default_prompt: "Use $photos-to-album with my photos and chosen photo style, including the 21 hand-drawn recipes, to create matching book images and a page-turning album."

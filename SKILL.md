@@ -1,6 +1,6 @@
 ---
 name: photos-to-album
-description: Turn supplied photos into consistently styled travel artwork and a page-turning MP4 album, stylizing people and scenery together, with configurable artwork ratio and video resolution.
+description: Turn supplied photos into original or styled artwork and a page-turning MP4 album, including 21 hand-drawn recipes with reference-aware production workflows.
 ---
 
 # Photos to Album
@@ -21,7 +21,7 @@ An explicit user sequence takes priority. Otherwise preserve attachment order; i
 
 | Setting | Default | Overrides |
 |---|---|---|
-| `photo_style` | `travel-album` | A built-in style below, `origin`, or a user-described artistic treatment |
+| `photo_style` | `travel-album` | A built-in style below, one of the 21 hand-drawn recipes, `origin`, or a user-described artistic treatment |
 | Artwork/album ratio | 1:2.26 for portrait video; 2.26:1 otherwise | Any positive explicit user ratio takes priority |
 | Book still resolution | 3840 pixels on the long edge | Fixed in the bundled renderer; disclose this if higher output is requested |
 | Video ratio | 16:9 | Independent of artwork ratio |
@@ -46,8 +46,24 @@ For other values, `photo_style` is a generation-prompt parameter, independent of
 | `graffiti` | 街头涂鸦、涂鸦 | [graffiti.md](references/graffiti.md) | High-energy spray paint, collage and bold marks |
 | `hand-drawing-story` | 手绘故事 | [hand-drawing-story.md](references/hand-drawing-story.md) | Minimal hand-drawn storytelling with deliberate empty space |
 | `postcard-drawing` | 明信片手绘、手绘明信片 | [postcard-drawing.md](references/postcard-drawing.md) | Bright gouache and marker travel illustration with an integrated English title and sentence |
+| `memory-sketch` | 淡彩回忆册、淡彩回忆 | [memory-sketch.md](references/memory-sketch.md) | Loose indigo sketch, one orange focus and generous white space |
+| `nordic-memory` | 北欧人物纪念册、北欧纪念册 | [nordic-memory.md](references/nordic-memory.md) | Scandinavian gouache characters on airy textured paper |
 
 All built-in styles share the same physical book, MP4 timing and page-turn renderer. They change only the flat artwork supplied to that renderer. `origin` remains the unchanged-photo mode.
+
+For `memory-sketch` and `nordic-memory`, use `scripts/hand-drawn-prompt.mjs` and the pinned complete package in `vendor/hand-drawn/`; Python 3.10+ is required for prompt extraction only. Attach the original as the content reference and pass the extracted prompt unchanged to the image editing tool. Their intentional paper whitespace overrides the full-scene expansion requirement in workflow steps 2 and 5. Follow the selected reference for subject simplification, palette and acceptance; keep people upright and do not crop or stretch them. Generate without text; requested captions are added separately after image review.
+
+## All 21 hand-drawn recipes
+
+Read [the complete hand-drawn catalog and album contract](references/hand-drawn.md) for `photo_style: hand-drawn-<number>` (1–20 plus 3.1), a numeric style, or its registered Chinese/English name. `node scripts/hand-drawn-prompt.mjs --list` lists all 21 recipes, aliases, required parameters and reference images. Existing names such as `水彩`, `涂鸦`, `memory-sketch` and `nordic-memory` retain their prior meaning. If the user requests hand-drawn styling without choosing a recipe, show the catalog and wait for their choice.
+
+Use the wrapper to extract the complete upstream JSON; infer content parameters from inspected source photos and the chosen recipe. Do not shorten, translate or mix visual recipes. `--source` adds the original after the style anchors as a character/content reference; repeated `--character-reference` inputs support recurring characters. Keep all `references`, `workflow`, `model_requirements` and `acceptance_contract` fields. Generic numbered calls retain the upstream prompt verbatim.
+
+The selected recipe's whitespace, panel layout, paper border, palette and subject simplification override full-scene expansion in steps 2 and 5. Keep artwork upright at the resolved album ratio and keep book geometry out of the generated texture. For panel styles, intentional character repetition across panels is allowed; check source fidelity within each panel. Use the same shared book renderer after artwork acceptance.
+
+For 3.1, execute all three generation/edit stages and repeat the style-only anchor on every page; only the third result is final. For 19, retain the locked model snapshot and high-fidelity reference requirements, then pass all hard failures and the 30/35 acceptance threshold. For 20, generate the candidate directly and run its bundled validator with a candidate-bound scorecard; require 34/40, no hard failures and exit code 0. Do not render intermediate or rejected candidates into a delivered album. If the backend cannot satisfy a required anchor, snapshot, input fidelity or stage, stop that production request and explain the missing capability; do not silently substitute another recipe or model. A prompt/package check is not proof that the image backend is ready.
+
+The wrapper verifies and caches needed images, with a byte-identical pinned GitHub archive fallback when the original host is unavailable. `python3 -B scripts/cache-hand-drawn-references.py` prefetches all five required images; `--verify-only` checks without network. `HAND_DRAWN_OFFLINE=1` requires valid cached references. No image-generation API key or backend is added by this integration.
 
 ## Chinese parameters
 

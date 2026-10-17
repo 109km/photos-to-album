@@ -18,7 +18,7 @@
     "setup": "node scripts/setup.mjs",
     "check": "node scripts/setup.mjs --check",
     "demo": "node examples/demo.mjs",
-    "test": "node --test scripts/options.test.mjs"
+    "test": "node --test scripts/options.test.mjs scripts/hand-drawn.test.mjs"
   },
   "license": "MIT"
 }

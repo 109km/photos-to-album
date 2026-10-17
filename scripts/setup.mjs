@@ -27,8 +27,8 @@ try {
     const installed = JSON.parse(await fs.readFile(path.join(root,'node_modules',name,'package.json'),'utf8')).version;
     if (installed !== version) throw new Error(`${name}: expected ${version}, found ${installed}. Run npm run setup.`);
   }
-  for (const file of ['assets/page-flip.wav', 'assets/page-flip-source.md', ...['watercolor','pencil','illustration','graffiti','hand-drawing-story','postcard-drawing'].map(style => `references/${style}.md`)]) await fs.access(path.join(root,file));
-  run(process.execPath, ['--test', path.join(root,'scripts/options.test.mjs')]);
+  for (const file of ['assets/page-flip.wav', 'assets/page-flip-source.md', 'scripts/hand-drawn-prompt.mjs', 'scripts/cache-hand-drawn-references.py', 'references/hand-drawn.md', 'references/hand-drawn-catalog.json', 'vendor/hand-drawn/scripts/render_prompt.py', ...['watercolor','pencil','illustration','graffiti','hand-drawing-story','postcard-drawing','memory-sketch','nordic-memory'].map(style => `references/${style}.md`)]) await fs.access(path.join(root,file));
+  run(process.execPath, ['--test', path.join(root,'scripts/options.test.mjs'), path.join(root,'scripts/hand-drawn.test.mjs')]);
   const sharp = require('sharp');
   const {ensureBrowser, getVideoMetadata} = require('@remotion/renderer');
   console.log('2/3 Checking the rendering browser (downloads it if needed)…');
@@ -58,7 +58,7 @@ try {
       if (still.width !== 3840 || still.height !== 1699) throw new Error('Book still dimensions are incorrect.');
     }
   } finally { await fs.rm(temp,{recursive:true,force:true}); }
-  console.log('\nReady: six style contracts, local image preparation, book stills, silent MP4 and optional page-flip audio rendering work. No personal photos were used.\nStyled image generation still requires an image-editing tool in your Codex session.');
+  console.log('\nReady: existing style contracts and the 21-recipe catalog are installed; book stills, silent MP4 and optional page-flip audio rendering work. No personal photos were used.\nImage generation still requires an editing tool. Hand-drawn extraction needs Python 3.10+; reference-dependent tests need verified cached anchors. See any skipped tests above.');
 } catch (error) {
   console.error(`\nSetup/check failed: ${error.message}\nSee README.md → Troubleshooting. Setup has not been verified.`);
   process.exitCode = 1;

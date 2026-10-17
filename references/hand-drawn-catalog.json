@@ -1,0 +1,390 @@
+[
+  {
+    "style_id": "1",
+    "name": "极简黑白线条讲解漫画(xkcd 火柴人)",
+    "aliases": [
+      "minimal-line",
+      "stickman",
+      "xkcd",
+      "极简线条",
+      "火柴人"
+    ],
+    "parameters": [
+      "N",
+      "分镜列表"
+    ],
+    "references": [],
+    "photo_style": "hand-drawn-1"
+  },
+  {
+    "style_id": "2",
+    "name": "蜡笔童涂(5岁小孩坏画)",
+    "aliases": [
+      "crayon",
+      "kid-crayon",
+      "蜡笔童涂"
+    ],
+    "parameters": [
+      "主体",
+      "主色调",
+      "标题词"
+    ],
+    "references": [],
+    "photo_style": "hand-drawn-2"
+  },
+  {
+    "style_id": "3",
+    "name": "吉卜力风",
+    "aliases": [
+      "ghibli",
+      "吉卜力",
+      "吉卜力风"
+    ],
+    "parameters": [
+      "主体"
+    ],
+    "references": [],
+    "photo_style": "hand-drawn-3"
+  },
+  {
+    "style_id": "3.1",
+    "name": "蜡笔童涂-潦草自画版",
+    "aliases": [
+      "family-crayon-card",
+      "kid-scrawl",
+      "parent-child-crayon",
+      "rawkid",
+      "stick-kid",
+      "submission-crayon",
+      "亲子手绘",
+      "亲子投稿蜡笔故事卡",
+      "亲子蜡笔故事",
+      "家庭投稿蜡笔卡",
+      "家庭蜡笔画",
+      "潦草自画版",
+      "蜡笔童涂-潦草自画版",
+      "蜡笔童涂潦草版"
+    ],
+    "parameters": [
+      "主体",
+      "文字"
+    ],
+    "references": [
+      "https://gentle-starburst-99bd99.netlify.app/hand-drawn/assets/style-3.1/anchor-family.png"
+    ],
+    "photo_style": "hand-drawn-3.1"
+  },
+  {
+    "style_id": "4",
+    "name": "小豆人黑色涂鸦信息图",
+    "aliases": [
+      "bean",
+      "blob",
+      "小豆人",
+      "小豆人涂鸦信息图"
+    ],
+    "parameters": [
+      "N",
+      "分镜列表"
+    ],
+    "references": [],
+    "photo_style": "hand-drawn-4"
+  },
+  {
+    "style_id": "5",
+    "name": "MS Paint 烂涂鸦(the worse, the better)",
+    "aliases": [
+      "bad-doodle",
+      "ms paint",
+      "ms-paint",
+      "ugly"
+    ],
+    "parameters": [
+      "主体"
+    ],
+    "references": [],
+    "photo_style": "hand-drawn-5"
+  },
+  {
+    "style_id": "6",
+    "name": "圆珠笔单线涂鸦(scribble)",
+    "aliases": [
+      "ballpoint",
+      "pen-scribble",
+      "scribble",
+      "圆珠笔"
+    ],
+    "parameters": [
+      "主体"
+    ],
+    "references": [],
+    "photo_style": "hand-drawn-6"
+  },
+  {
+    "style_id": "7",
+    "name": "蜡笔实拍(真·儿童手涂纸张)",
+    "aliases": [
+      "crayon-photo",
+      "real-crayon",
+      "蜡笔实拍"
+    ],
+    "parameters": [
+      "主体",
+      "主色调",
+      "标题词"
+    ],
+    "references": [],
+    "photo_style": "hand-drawn-7"
+  },
+  {
+    "style_id": "8",
+    "name": "水墨写意",
+    "aliases": [
+      "chinese-painting",
+      "ink",
+      "ink-wash",
+      "shuimo",
+      "水墨"
+    ],
+    "parameters": [
+      "主体"
+    ],
+    "references": [],
+    "photo_style": "hand-drawn-8"
+  },
+  {
+    "style_id": "9",
+    "name": "复古像素",
+    "aliases": [
+      "16-bit",
+      "8-bit",
+      "pixel",
+      "pixel-art",
+      "像素"
+    ],
+    "parameters": [
+      "主体",
+      "主色调"
+    ],
+    "references": [],
+    "photo_style": "hand-drawn-9"
+  },
+  {
+    "style_id": "10",
+    "name": "情绪叙事淡彩速写",
+    "aliases": [
+      "emo-sketch",
+      "light-watercolor",
+      "story-sketch",
+      "watercolor-sketch",
+      "情绪叙事",
+      "淡彩速写"
+    ],
+    "parameters": [
+      "主体",
+      "文字",
+      "橙色关键物"
+    ],
+    "references": [],
+    "photo_style": "hand-drawn-10"
+  },
+  {
+    "style_id": "11",
+    "name": "二维水彩风格(复古动画概念稿)",
+    "aliases": [
+      "concept-art",
+      "gouache-concept",
+      "mid-century",
+      "retro-concept",
+      "二维水彩"
+    ],
+    "parameters": [
+      "主体",
+      "文字",
+      "构图",
+      "焦点物件",
+      "背景浓度"
+    ],
+    "references": [],
+    "photo_style": "hand-drawn-11"
+  },
+  {
+    "style_id": "12",
+    "name": "暖光童画(动画概念暖绘)",
+    "aliases": [
+      "storybook-visdev",
+      "sunlit-storybook",
+      "vis-dev",
+      "暖光童画"
+    ],
+    "parameters": [
+      "主体",
+      "场景",
+      "文字",
+      "构图"
+    ],
+    "references": [],
+    "photo_style": "hand-drawn-12"
+  },
+  {
+    "style_id": "13",
+    "name": "北欧纸雕(paper-folk)",
+    "aliases": [
+      "nordic-papercraft",
+      "paper-folk",
+      "paper-sculpture",
+      "papercraft",
+      "quilling",
+      "剪纸民俗",
+      "北欧纸雕"
+    ],
+    "parameters": [
+      "主体",
+      "底色",
+      "构图",
+      "点缀元素"
+    ],
+    "references": [
+      "https://gentle-starburst-99bd99.netlify.app/hand-drawn/examples/13-paper-folk-musician.png",
+      "https://gentle-starburst-99bd99.netlify.app/hand-drawn/examples/13-paper-folk.png"
+    ],
+    "photo_style": "hand-drawn-13"
+  },
+  {
+    "style_id": "14",
+    "name": "北欧绘本水粉(nordic-storybook)",
+    "aliases": [
+      "nordic-storybook",
+      "scandi-gouache",
+      "scandinavian-storybook",
+      "soft-gouache",
+      "北欧绘本水粉"
+    ],
+    "parameters": [
+      "主体",
+      "光影",
+      "构图",
+      "纸底色"
+    ],
+    "references": [],
+    "photo_style": "hand-drawn-14"
+  },
+  {
+    "style_id": "15",
+    "name": "大鼻软偶(softnose-vinyl)",
+    "aliases": [
+      "art-toy",
+      "bignose-toy",
+      "softnose",
+      "softnose-vinyl",
+      "vinyl-toy",
+      "大鼻软偶"
+    ],
+    "parameters": [
+      "主体",
+      "构图",
+      "眼型",
+      "穿搭",
+      "肤色",
+      "背景底色",
+      "胡茬"
+    ],
+    "references": [],
+    "photo_style": "hand-drawn-15"
+  },
+  {
+    "style_id": "16",
+    "name": "聚光水粉立绘(gouache-spotlight)",
+    "aliases": [
+      "character-spotlight",
+      "gouache-spotlight",
+      "spotlight-gouache",
+      "聚光水粉立绘"
+    ],
+    "parameters": [
+      "主体",
+      "文字",
+      "构图",
+      "背景色"
+    ],
+    "references": [],
+    "photo_style": "hand-drawn-16"
+  },
+  {
+    "style_id": "17",
+    "name": "墨线绘本(inked-storybook)",
+    "aliases": [
+      "ink-storybook",
+      "inked-storybook",
+      "sketch-storybook",
+      "storybook-ink",
+      "墨线绘本"
+    ],
+    "parameters": [
+      "主体",
+      "文字",
+      "构图",
+      "背景色",
+      "配色"
+    ],
+    "references": [],
+    "photo_style": "hand-drawn-17"
+  },
+  {
+    "style_id": "18",
+    "name": "暖色扁平绘本(warm-flat-storybook)",
+    "aliases": [
+      "flat-storybook",
+      "geometric-storybook",
+      "warm-flat",
+      "warm-flat-storybook",
+      "暖色扁平绘本"
+    ],
+    "parameters": [
+      "主体",
+      "文字",
+      "构图"
+    ],
+    "references": [],
+    "photo_style": "hand-drawn-18"
+  },
+  {
+    "style_id": "19",
+    "name": "圆头红线极简童画(roundhead-redline)",
+    "aliases": [
+      "graphite-redline",
+      "redline-roundhead",
+      "roundhead-redline",
+      "圆头红线",
+      "圆头红线极简童画",
+      "黑红白圆头童画"
+    ],
+    "parameters": [
+      "主体",
+      "文字"
+    ],
+    "references": [
+      "https://gentle-starburst-99bd99.netlify.app/hand-drawn/assets/style-19/anchor-roundhead-redline.png"
+    ],
+    "photo_style": "hand-drawn-19"
+  },
+  {
+    "style_id": "20",
+    "name": "暖黄墨线情绪小剧场(warm-yellow-ink-story)",
+    "aliases": [
+      "mustard-ink-story",
+      "warm-yellow-ink-story",
+      "yellow-ink-story",
+      "暖黄墨线",
+      "暖黄墨线情绪小剧场"
+    ],
+    "parameters": [
+      "主体",
+      "文字"
+    ],
+    "references": [
+      "https://gentle-starburst-99bd99.netlify.app/hand-drawn/assets/style-20/anchor-warm-yellow-ink-story.png"
+    ],
+    "photo_style": "hand-drawn-20"
+  }
+]

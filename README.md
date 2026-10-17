@@ -23,6 +23,8 @@ https://github.com/user-attachments/assets/9d328705-48eb-41b8-80d5-7d35b3325622
 
 **Landscape and portrait photos are welcome.** In AI-styled mode, the skill automatically expands the scenery around photos to fill the resolved album ratio: **2.26:1** for landscape/square videos, or **1:2.26** for portrait videos such as 9:16. Landscape photos in a portrait album are expanded above and below before the video is rendered. It fills the pages without stretching the photo or adding blank bands, while keeping subjects recognizable. Set `image_ratio` to use a different shape. In `photo_style: origin`, photos are fitted proportionally with ivory margins instead of AI expansion; source files remain untouched.
 
+Hand-drawn recipes retain their native whitespace, panels and paper margins rather than forcing full-scene expansion; see the [hand-drawn album contract](references/hand-drawn.md).
+
 This is a skill for an agent, with a local renderer. It is not a hosted service or a one-command AI image generator.
 
 ## Quick start
@@ -211,6 +213,47 @@ Click a preview to watch the full 720p MP4 demo. All six artwork styles share th
 $photos-to-album photo_style: postcard-drawing, quality: 4k
 ```
 
+### All 21 hand-drawn recipes
+
+The full hand-drawn library is integrated: styles 1–20 plus the stable 3.1 variant. Choose a number, registered Chinese/English name or `hand-drawn-<number>`. [Complete catalog and production guide](references/hand-drawn.md).
+
+```text
+$photos-to-album photo_style: ink-wash
+$photos-to-album photo_style: hand-drawn-13, quality: 1080p
+$photos-to-album 照片风格：3.1，视频比例：9:16
+```
+
+```sh
+node scripts/hand-drawn-prompt.mjs --list
+python3 -B scripts/cache-hand-drawn-references.py
+```
+
+The wrapper returns the complete prompt/reference/workflow JSON. It supports panel parameters, exact titles and recurring-character references, while retaining each recipe's native whitespace, palette and structure. The five runtime reference images are verified against the pinned manifest; an immutable GitHub source can restore byte-identical originals if the original image host is unavailable. Images are cached outside the skill.
+
+Styles 3.1, 19 and 20 require their complete multi-stage or acceptance workflows. Styles 19/20 also require a backend that can lock the specified model snapshot and support high-fidelity reference input. Adding the recipes does not provide that backend or certify generated-image quality. [Read the production gates](references/hand-drawn.md#references-and-production-gates).
+
+### Hand-drawn memory album presets
+
+Two additional treatments combine the pinned [hand-drawn-styles](https://github.com/threerocks/hand-drawn-styles) recipes with our existing book and page-turn renderer:
+
+- **Memory Sketch / 淡彩回忆册** (`memory-sketch`): loose indigo lines, one orange focus and generous white space. [Style guide](references/memory-sketch.md).
+- **Nordic Memory / 北欧人物纪念册** (`nordic-memory`): Scandinavian gouache characters, paper texture and a restrained blue/yellow palette. [Style guide](references/nordic-memory.md).
+
+```text
+$photos-to-album photo_style: memory-sketch, quality: 1080p
+$photos-to-album 照片风格：北欧人物纪念册，视频比例：9:16
+```
+
+Faces are illustrated, poses and essential objects are retained, and detailed scenery may be simplified. Intentional paper whitespace is preserved. Image generation requires an editing tool; Python 3.10+ is only needed to extract the bundled recipes. Optional captions are added after image review.
+
+Prepare a reproducible generation brief from the skill directory:
+
+```sh
+node scripts/hand-drawn-prompt.mjs --style memory-sketch --source /path/to/photo.jpg --subject 'A woman opening her arms beside a snowy stream' --orange-focus 'the outdoor jacket' --aspect 2.26:1
+```
+
+The command outputs the full prompt and content-reference path as JSON, not a generated image. Pass both to the image editing tool, review the artwork, then use the shared renderer. The upstream MIT license and pinned revision are retained in `vendor/hand-drawn/`.
+
 **Keep the photos as they are**
 
 ```text
@@ -266,7 +309,7 @@ The diagram shows resting layouts; the page-turn animation can extend beyond the
 
 | Setting | Default | Examples |
 |---|---|---|
-| `photo_style` | `travel-album` | `origin`, `travel-album`, `watercolor`, `pencil`, `illustration`, `graffiti`, `hand-drawing-story`, `postcard-drawing`, or your own description |
+| `photo_style` | `travel-album` | Existing photo styles, `memory-sketch`, `nordic-memory`, all [21 hand-drawn recipes](references/hand-drawn.md), `origin`, or your own description |
 | `duration` | `2s` per photo | `2s`, `4s`, `1.5s` |
 | `quality` | `4k` | `720p`, `1080p`, `4k` |
 | `video_ratio` | `16:9` | `9:16`, `1:1` |
@@ -342,4 +385,4 @@ $photos-to-album photo_style: postcard-drawing, page_flip_sound: true
 
 Use `page_flip_sound: false` for silent output. In job JSON, use `"pageFlipSound": true` (the snake_case alias also works). A CC0 recording of a real page turn is bundled; no download or audio service is required during rendering. See [sound credits](assets/page-flip-source.md). Still images and single-page albums have no flip sound.
 
-First-use setup checks all six style contracts and the bundled page-turn recording, runs parameter tests, and renders both silent and sound-enabled sample videos plus book stills. All rendering assets are included in the repository. AI photo styling still needs an image-editing tool in your session; generated artwork can vary between runs.
+First-use setup checks existing style contracts, the complete 21-recipe catalog and the bundled page-turn recording, runs parameter tests, and renders both silent and sound-enabled sample videos plus book stills. AI styling still requires an image-editing tool. Without Python 3.10+, prompt extraction tests are skipped; without valid cached anchors, reference-dependent call tests are skipped. Original-photo rendering remains available. Prefetch references with `python3 -B scripts/cache-hand-drawn-references.py`, then run `npm test` to check all 21 calls. These checks do not generate or visually certify images.

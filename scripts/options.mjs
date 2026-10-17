@@ -1,4 +1,5 @@
 // Public prompt/JSON aliases. Photo styling remains an upstream agent task.
+import handDrawnCatalog from '../references/hand-drawn-catalog.json' with {type:'json'};
 const text = value => String(value).trim();
 const ratios = value => text(value).replaceAll('：', ':').replaceAll('比', ':');
 const seconds = value => Number(text(value).replace(/(?:秒|s)$/i, '').trim());
@@ -14,8 +15,12 @@ const style = value => {
     'graffiti':'graffiti','street-graffiti':'graffiti','街头涂鸦':'graffiti','涂鸦':'graffiti',
     'hand-drawing-story':'hand-drawing-story','手绘故事':'hand-drawing-story',
     'postcard-drawing':'postcard-drawing','明信片手绘':'postcard-drawing','手绘明信片':'postcard-drawing',
+    'memory-sketch':'memory-sketch','淡彩回忆册':'memory-sketch','淡彩回忆':'memory-sketch',
+    'nordic-memory':'nordic-memory','北欧人物纪念册':'nordic-memory','北欧纪念册':'nordic-memory',
   };
-  return builtIns[normalized] ?? text(value);
+  if (builtIns[normalized]) return builtIns[normalized];
+  const handDrawn = handDrawnCatalog.find(entry => [entry.photo_style, entry.style_id, `${entry.style_id}号`, `${entry.style_id}号画风`, entry.name, entry.name.split('(')[0], ...entry.aliases].some(alias => alias.toLowerCase() === normalized));
+  return handDrawn?.photo_style ?? text(value);
 };
 const sound = value => {
   if (typeof value === 'boolean') return value;

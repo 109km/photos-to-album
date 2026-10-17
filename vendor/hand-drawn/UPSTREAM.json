@@ -1,0 +1,6 @@
+{
+  "repository": "https://github.com/threerocks/hand-drawn-styles",
+  "commit": "4132988b8596bfa36321c970a4472d4e3bb25d96",
+  "package_sha256": "1098b8d94eb3dca546c8144766913af6c660df5db20df7c0e32b299f697d693c",
+  "integration": "Pinned complete runtime package; upstream files are unmodified."
+}
